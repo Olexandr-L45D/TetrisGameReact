@@ -1,0 +1,171 @@
+/* WinModal.module.css */
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 780px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: url("/src/assets/emages/FonBacgCogratMidle.png") center/cover */
+  /* no-repeat; */
+  background: url("/src/assets/emages/MaskMountains.png") center/cover no-repeat;
+  margin-left: -20px;
+  /* z-index: 1000; */
+  z-index: 9999; /* гарантовано поверх всіх інших */
+}
+
+.win-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionBlok {
+  display: flex;
+  flex-direction: column; /* розташування по вертикалі */
+  align-items: center; /* горизонтальне центрування */
+  justify-content: center; /* вертикальне центрування */
+  width: 100%;
+  height: 100%;
+  text-align: center; /* вирівнювання тексту */
+}
+
+.title {
+  margin-top: -30px;
+  display: inline-block; /* щоб ширина була по тексту */
+  padding-top: 70px;
+  padding-bottom: 70px;
+  padding-left: 90px;
+  padding-right: 90px;
+  font-family: Fredoka;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 48px;
+  line-height: 80%;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fafafa;
+  background: url("/src/assets/emages/TitleBagrPhone.png") center center
+    no-repeat;
+  background-size: contain; /* фон підлаштується під розмір блоку */
+}
+
+.button {
+  /* Центруємо текст і іконку по горизонталі та вертикалі */
+  display: inline-flex; /* робимо flex, щоб вирівняти вміст */
+  align-items: center; /* вирівнюємо вертикально по центру */
+  justify-content: center; /* вирівнюємо горизонтально по центру */
+  gap: 8px; /* відстань між текстом і стрілкою */
+
+  margin-top: -70px;
+  width: 200px;
+  height: 60px;
+  border-radius: 28px;
+
+  font-family: Fredoka;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1; /* щоб не було додаткових відступів у тексту */
+  letter-spacing: 0;
+  background: linear-gradient(180deg, #ffc965 0%, #ffdb63 100%);
+  color: #c57cff;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  /* Анімація появи */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px) scale(0.98);
+  transition: opacity 300ms ease, transform 300ms ease;
+  visibility: hidden;
+}
+
+/* Клас для показу кнопки */
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+}
+
+.arrow {
+  width: 24px; /* фіксований розмір іконки */
+  height: 24px;
+}
+
+/* Базовий стиль конфеті */
+.confetti {
+  position: absolute;
+  top: -10px;
+  background-color: var(--confetti-color, #f5af19, #008000, #2a27d0, #ff0000);
+  opacity: 0.9;
+  animation-name: fallConfetti;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  left: calc(var(--confetti-left, 50%) * 1%);
+  animation-duration: var(--confetti-duration, 3s);
+  animation-delay: var(--confetti-delay, 0s);
+  box-shadow: 0 0 6px var(--confetti-color, #f5af19);
+}
+
+/* Форми */
+.circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.square {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.rectangle {
+  width: 15px;
+  height: 6px;
+  border-radius: 2px;
+}
+
+.triangle {
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid orange;
+}
+
+.star {
+  width: 6px;
+  height: 6px;
+  background: yellow;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+/* Анімація падіння */
+@keyframes fallConfetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(400px) rotate(360deg);
+    opacity: 0;
+  }
+}
