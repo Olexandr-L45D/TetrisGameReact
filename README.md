@@ -2,57 +2,63 @@
 
 # game-tetris
 
-game-tetris is a classic **X and O game** built with **React + Vite**.  
-The application features smooth animations, turn management, and engaging visual
-effects.
+🕹️ Game Flow (Roadmap)
 
-## 🕹️ Game Flow (Roadmap)
+Start the Application The app initializes with routing and basic navigation
+setup.
 
-0. **Start the Application**  
-   The app initializes with routing and basic navigation setup.
+Home Page Landing page with a Start Game button.
 
-1. **Home Page**  
-   Landing page with a **Start Game** button.
+GameSettingModal / Settings Player selects the game settings (e.g., difficulty
+level, speed, theme, language). Settings are stored in the application state.
 
-2. **GameSettingModal / Settings**  
-   Player selects the game settings (ege, lenguage, Hero) (e.g., difficulty,
-   player symbol, AI options).  
-   Settings are stored in the application state.
+TetrisGame / Game Board
 
-3. **TetrisGame/Game Board**
+Displays the Tetris grid (e.g., 10x20).
 
-   - Displays a 3x3 grid for the game.
-   - Handles player turns, marking X = Your hero or O = Computer.
-   - Blocks invalid moves and prevents clicking already occupied cells.
-   - Tracks the state of the board and checks for win or draw conditions.
-   - Updates the board and triggers visual/audio feedback for moves.
+Handles falling Tetromino blocks.
 
-4. **Game Logic (Core)**
+Allows player to move, rotate, and drop blocks.
 
-   - Manages game rules and turn alternation.
-   - Checks for winning combinations and draw conditions.
-   - Updates the board and triggers visual/audio feedback for moves.
-   - Includes animations for moves, highlights winning lines, and optional
-     character effects.
+Detects collisions with the board edges or existing blocks.
 
-5. **Win / Draw Modal**
+Clears completed lines and updates the score.
 
-   - Displays the result with a **Congratulations!** or **Draw!** message.
-   - Shows confetti animation or visual effects for victory.
-   - Includes a **Play Again** button to reset the board and start a new game.
+Handles increasing difficulty (speed up) as the game progresses.
 
----
+Game Logic (Core)
 
-## ✨ Features
+Manages spawning and movement of Tetromino shapes.
 
-- Classic Tetris gameplay with X and O.
-- Configurable difficulty and optional AI opponent.
-- Smooth animations for moves and win/draw.
-- Audio feedback for player actions.
-- Visual highlighting of winning lines.
-- Instant replay option to start a new round.
+Checks for line completions.
 
----
+Tracks current score, level, and cleared lines.
+
+Detects Game Over condition.
+
+Includes animations for line clears and block placement.
+
+GameOverModal / Result Screen
+
+Displays Game Over message with final score.
+
+Shows stats (lines cleared, level reached).
+
+## Includes a Play Again button to reset and start a new game.
+
+Features
+
+Classic Tetris gameplay.
+
+Configurable difficulty and speed.
+
+Smooth animations for falling blocks and line clears.
+
+Audio feedback for actions (move, rotate, clear line).
+
+Score, level, and progress tracking.
+
+Replay option to start a new game instantly.
 
 ## Build Notes
 
