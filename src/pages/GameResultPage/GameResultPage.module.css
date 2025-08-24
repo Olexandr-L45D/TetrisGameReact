@@ -2,8 +2,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 320px;
-  height: 780px;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  max-width: 320px;
+  height: 100%;
+  max-height: 780px;
   background: url("/src/assets/emages/BacgrBlue.png") center/cover no-repeat;
   display: flex;
   justify-content: center;
@@ -22,6 +26,14 @@
   pointer-events: none;
   z-index: 0;
 }
+
+@media (min-width: 319px) {
+  .modalOverlay {
+    max-width: 370px;
+    max-height: 850px;
+  }
+}
+
 .title {
   display: block;
   width: 100%;

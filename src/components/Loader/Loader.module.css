@@ -1,6 +1,10 @@
 .loaderContainer {
-  width: 320px;
-  height: 780px;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  max-width: 320px;
+  height: 100%;
+  max-height: 780px;
   position: fixed;
   top: 0;
   left: 0;
@@ -20,4 +24,11 @@
   align-items: center;
   height: 80vh;
   width: 100vw;
+}
+
+@media (min-width: 319px) {
+  .loaderContainer {
+    max-width: 370px;
+    max-height: 850px;
+  }
 }

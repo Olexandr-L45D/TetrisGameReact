@@ -1,15 +1,23 @@
-/* style */
 .container {
-  width: 320px;
-  height: 780px;
+  width: 100%;
+  max-width: 320px;
+  height: 100%;
+  max-height: 780px;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; /* щоб працювало justify/align */
   justify-content: center;
   align-items: center;
-  background: url("/src/assets/emages/BacgrBlue.png") calc(50% - 20px)
-      center/cover no-repeat,
+  background: url("/src/assets/emages/BacgrBlue.png") center/cover no-repeat,
     url("/src/assets/emages/MaskStars.png") center/cover no-repeat;
+}
+@media (min-width: 319px) {
+  .container {
+    max-width: 370px;
+    max-height: 850px;
+  }
 }
 
 .gameStart {
@@ -33,14 +41,7 @@
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  justify-content: center;
-}
-
-.card {
+  margin-top: 20px;
   position: relative; /* дозволяє абсолютно позиціонувати сяйво всередині */
   display: flex;
   flex-direction: column;
@@ -112,4 +113,47 @@
   margin: 5px;
   margin-bottom: 0px;
   padding: 0px;
+}
+
+.buttonStart {
+  width: 80px; /* фіксований розмір іконки */
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* вертикальне центрування */
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 50px;
+  /* margin-left: -30px; */
+  border: none;
+  border-radius: 50%;
+}
+
+.arrow {
+  width: 150px; /* фіксований розмір іконки */
+  height: 150px;
+  /* background: url("/src/assets/emages/TetrisLogoGame.png") center center
+    no-repeat; */
+}
+.blockBottom {
+  width: 150px;
+  height: 150px;
+  margin-top: 50px;
+  display: inline-block; /* щоб ширина була по тексту */
+  padding-top: 70px;
+  padding-bottom: 70px;
+  padding-left: 90px;
+  padding-right: 90px;
+  font-family: Fredoka;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 48px;
+  line-height: 80%;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fafafa;
+  background: url("/src/assets/emages/BlockHomePageIcon.png") center center
+    no-repeat;
+  background-size: contain; /* фон підлаштується під розмір блоку */
 }
