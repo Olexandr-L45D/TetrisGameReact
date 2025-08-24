@@ -3,9 +3,10 @@ import css from "./TetrisGame.module.css";
 import { FiSettings } from "react-icons/fi";
 import { generateShapes, checkFullLines, clearLines } from "../GameLogic";
 import GameBoard from "../GameBoard/GameBoard";
-import ShapePickerMobileDrag from "../ShapePickerMobileDrag/ShapePickerMobileDrag";
+// import ShapePickerMobileDrag from "../ShapePickerMobileDrag/ShapePickerMobileDrag";
 // import LogoGame from "/src/assets/emages/TetrisLogoGame.png";
 import { FcOnlineSupport } from "react-icons/fc";
+import ShapePicker from "../ShapePicker/ShapePicker";
 
 const GRID_SIZE = 8;
 
@@ -30,9 +31,9 @@ const TetrisGame = () => {
     const newGrid = grid.map(r => [...r]);
     let canPlace = true;
 
-    for (let r = 0; r < shape.length; r++) {
-      for (let c = 0; c < shape[r].length; c++) {
-        if (shape[r][c]) {
+    for (let r = 0; r < shape.cells.length; r++) {
+      for (let c = 0; c < shape.cells[r].length; c++) {
+        if (shape.cells[r][c]) {
           if (!newGrid[row + r] || newGrid[row + r][col + c] !== null) {
             canPlace = false;
           }
@@ -42,10 +43,10 @@ const TetrisGame = () => {
 
     if (!canPlace) return;
 
-    for (let r = 0; r < shape.length; r++) {
-      for (let c = 0; c < shape[r].length; c++) {
-        if (shape[r][c]) {
-          newGrid[row + r][col + c] = shape[r][c];
+    for (let r = 0; r < shape.cells.length; r++) {
+      for (let c = 0; c < shape.cells[r].length; c++) {
+        if (shape.cells[r][c]) {
+          newGrid[row + r][col + c] = shape.color;
         }
       }
     }
@@ -64,6 +65,45 @@ const TetrisGame = () => {
 
     setShapes(generateShapes(3));
   };
+
+  // const handleDropShape = (shape, row, col) => {
+  //   const newGrid = grid.map(r => [...r]);
+  //   let canPlace = true;
+
+  //   for (let r = 0; r < shape.length; r++) {
+  //     for (let c = 0; c < shape[r].length; c++) {
+  //       if (shape[r][c]) {
+  //         if (!newGrid[row + r] || newGrid[row + r][col + c] !== null) {
+  //           canPlace = false;
+  //         }
+  //       }
+  //     }
+  //   }
+
+  //   if (!canPlace) return;
+
+  //   for (let r = 0; r < shape.length; r++) {
+  //     for (let c = 0; c < shape[r].length; c++) {
+  //       if (shape[r][c]) {
+  //         newGrid[row + r][col + c] = shape[r][c];
+  //       }
+  //     }
+  //   }
+
+  //   const { fullRows, fullCols } = checkFullLines(newGrid);
+  //   if (fullRows.length || fullCols.length) {
+  //     const cleared = clearLines(newGrid, fullRows, fullCols);
+  //     setGrid(cleared);
+
+  //     const points = (fullRows.length + fullCols.length) * GRID_SIZE * 2;
+  //     setScore(prev => prev + points);
+  //     setTotalScore(prev => prev + points);
+  //   } else {
+  //     setGrid(newGrid);
+  //   }
+
+  //   setShapes(generateShapes(3));
+  // };
 
   return (
     <main className={css.containerGame}>
@@ -89,11 +129,12 @@ const TetrisGame = () => {
         </header>
 
         <GameBoard grid={grid} onDropShape={handleDropShape} />
+        <ShapePicker shapes={shapes} />
 
-        <ShapePickerMobileDrag
+        {/* <ShapePickerMobileDrag
           shapes={shapes}
           onDrop={(row, col, shape) => handleDropShape(shape, row, col)}
-        />
+        /> */}
       </div>
     </main>
   );
