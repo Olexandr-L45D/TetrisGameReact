@@ -1,5 +1,4 @@
 /* GameBoard.module.css */
-
 .boardContainer {
   width: 285px;
   height: 300px;
@@ -14,7 +13,6 @@
   gap: 3px;
   background-color: rgb(11, 11, 57); /* темне тло */
   border-radius: 8px;
-  padding: 3px; /* щоб квадратики не обрізалися */
 }
 
 .cell {
@@ -23,58 +21,5 @@
   border-radius: 4px;
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.08); /* малопомітна сітка */
-  transition: background-color 0.2s, transform 0.3s, box-shadow 0.3s;
-
-  /* 3D ефект */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2);
-}
-
-.cell.flash {
-  animation: flashAnim 1s ease-in-out;
-}
-
-@keyframes flashAnim {
-  0% {
-    background-color: rgba(255, 255, 0, 0.8); /* жовтий підсвіт */
-    transform: scale(1.1);
-    box-shadow: 0 0 8px rgba(255, 255, 0, 0.9);
-  }
-  50% {
-    background-color: rgba(255, 255, 0, 0.5);
-    transform: scale(1);
-    box-shadow: 0 0 4px rgba(255, 255, 0, 0.6);
-  }
-  100% {
-    background-color: transparent;
-    transform: scale(1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4),
-      inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  }
-}
-
-/* 
-.boardContainer {
-  width: 285px;
-  height: 300px;
-  margin: 2px;
-  padding: 2px;
-}
-
-.board {
-  display: grid;
-  grid-template-columns: repeat(8, 32px);
-  grid-template-rows: repeat(8, 32px);
-  gap: 3px;
-  background-color: rgb(11, 11, 57); 
-  border-radius: 8px;
-}
-
-.cell {
-  width: 32px;
-  height: 32px;
-  border-radius: 4px;
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.08); 
   transition: background-color 0.2s;
-} */
+}

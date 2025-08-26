@@ -1,0 +1,80 @@
+.boardContainer {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center; /* щоб сітка завжди була по центру */
+}
+
+/* контейнер для доступних фігур */
+/* .shapePicker {
+  margin-bottom: 140px;
+  width: 100%;
+  max-width: 320px;
+  min-height: 100px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  padding: 8px;
+  box-sizing: border-box;
+} */
+.shapePicker {
+  margin-bottom: 120px;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px;
+}
+
+/* сама фігура */
+.shape {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  touch-action: none; /* щоб працювали жести drag без скролу */
+  cursor: grab;
+  user-select: none;
+}
+
+/* рядок у фігурі */
+.shapeRow {
+  display: flex;
+  gap: 3px;
+}
+
+/* клітинка фігури */
+/* .shapeCell {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+} */
+
+.shapeCell {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  background: hsl(107, 95%, 15%); /* основний колір клітинки */
+  background-clip: padding-box; /* щоб колір не вилазив */
+}
+
+/* тіньовий превʼю під час drag */
+.dragPreview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+
+  opacity: 0.9;
+}

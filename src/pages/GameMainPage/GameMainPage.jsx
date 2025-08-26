@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import css from "./GameMainPage.module.css";
 // import GameSettingsModal from "../../components/GameSettingsModal/GameSettingsModal";
 import Loader from "../../components/Loader/Loader";
-import TetrisGame from "../../components/TetrisGame/TetrisGame";
+// import TetrisGameSecond from "../../components/TetrisGameSecond/TetrisGameSecond";
 import startSound from "/src/assets/audio/successMixkit.mp3.wav";
+import TetrisGame from "../../components/TetrisGame/TetrisGame";
 
 const GameMainPage = () => {
   const [startGame, setStartGame] = useState(false);
