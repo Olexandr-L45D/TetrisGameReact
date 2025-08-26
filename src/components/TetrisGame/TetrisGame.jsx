@@ -4,10 +4,10 @@ import css from "./TetrisGame.module.css";
 import { FcOnlineSupport } from "react-icons/fc";
 import { FiSettings } from "react-icons/fi";
 import { generateShapes, checkFullLines, clearLines } from "../GameLogic";
-// import GameBoard from "../GameBoard/GameBoard";
+import GameBoard from "../GameBoard/GameBoard";
 // import ShapePicker from "../ShapePicker/ShapePicker";
 import ShapePickerMobile from "../ShapePickerMobile/ShapePickerMobile";
-import GameBoardBlock from "../GameBoardBlock/GameBoardBlock";
+// import GameBoardBlock from "../GameBoardBlock/GameBoardBlock";
 
 const GRID_SIZE = 8;
 
@@ -97,7 +97,7 @@ const TetrisGame = () => {
         </header>
 
         {/* Main Board */}
-        <GameBoardBlock grid={grid} onDropShape={handleDropShape} />
+        <GameBoard grid={grid} onDropShape={handleDropShape} />
 
         {/* Shape Picker */}
         {/* <ShapePicker shapes={shapes} /> */}

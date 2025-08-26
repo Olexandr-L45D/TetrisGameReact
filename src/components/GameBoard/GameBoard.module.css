@@ -23,3 +23,8 @@
   border: 1px solid rgba(255, 255, 255, 0.08); /* малопомітна сітка */
   transition: background-color 0.2s;
 }
+
+.flash {
+  transform: scale(1.2);
+  filter: brightness(1.5);
+}
