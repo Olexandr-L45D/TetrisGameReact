@@ -65,7 +65,7 @@
 
 const COLORS = [
   "#00fc54af", // салатово-зелений
-  "#0000FF", // синій
+  "hsla(240, 76%, 31%, 1.00)", // синій
   "#00BFFF", // голубий
   "#FFFF00", // жовтий
   "#800080", // фіолетовий
@@ -95,6 +95,15 @@ export const generateShapes = (count = 5) => {
   const templates = [
     // 3 горизонтальні
     {
+      cells: normalizeShape([{ row: 0, col: 0 }]),
+    },
+    {
+      cells: normalizeShape([
+        { row: 0, col: 0 },
+        { row: 0, col: 1 },
+      ]),
+    },
+    {
       cells: normalizeShape([
         { row: 0, col: 0 },
         { row: 0, col: 1 },
@@ -109,16 +118,6 @@ export const generateShapes = (count = 5) => {
         { row: 2, col: 0 },
       ]),
     },
-    // 2x2 квадрат
-    // {
-    //   cells: normalizeShape([
-    //     { row: 0, col: 0 },
-    //     { row: 0, col: 1 },
-    //     { row: 1, col: 0 },
-    //     { row: 1, col: 1 },
-    //   ]),
-    // },
-    // 1x4 лінія
     {
       cells: normalizeShape([
         { row: 0, col: 0 },
@@ -143,8 +142,6 @@ export const generateShapes = (count = 5) => {
         { row: 0, col: 1 },
         { row: 0, col: 2 },
         { row: 1, col: 0 },
-        { row: 1, col: 1 },
-        { row: 1, col: 2 },
       ]),
     },
     // Г-подібна коротка

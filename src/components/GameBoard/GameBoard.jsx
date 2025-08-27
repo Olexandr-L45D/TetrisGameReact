@@ -4,7 +4,7 @@ import css from "./GameBoard.module.css";
 const GRID_SIZE = 8;
 const COLORS = [
   "rgba(43, 82, 4, 1)", // зелений
-  "#0000FF", // синій
+  "rgba(10, 10, 148, 0.88)", // синій
   "#00BFFF", // голубий
   "#FFFF00", // жовтий
   "#800080", // фіолетовий

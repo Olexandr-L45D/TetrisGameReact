@@ -3,7 +3,7 @@
   padding: 0px;
   margin: 0px;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   height: 100%;
   max-height: 780px;
   display: flex;
@@ -13,7 +13,7 @@
   background-color: blue;
 }
 
-@media (min-width: 319px) {
+@media (min-width: 339px) {
   .containerGame {
     max-width: 370px;
     max-height: 850px;
@@ -21,7 +21,7 @@
 }
 
 .container {
-  width: 320px;
+  width: 340px;
   height: 780px;
   display: flex;
   flex-direction: column;
@@ -37,8 +37,8 @@
   margin: 0px;
   margin-right: 8px;
   left: 0;
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   justify-content: start;
 }
 .headerContainer {
@@ -50,7 +50,7 @@
   padding-bottom: 0px;
 }
 .header {
-  width: 300px;
+  width: 310px;
   height: auto;
   display: flex;
   justify-content: start;
@@ -94,13 +94,13 @@
 }
 .board {
   display: grid;
-  grid-template-columns: repeat(8, 32px);
-  grid-template-rows: repeat(8, 32px);
+  grid-template-columns: repeat(8, 34px);
+  grid-template-rows: repeat(8, 34px);
   gap: 3px;
 }
 .cell {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 4px;
 }
 
@@ -109,12 +109,13 @@
   margin-top: 20px;
 }
 .button {
-  padding: 8px 16px;
+  padding: 6px 10px;
   border: none;
   border-radius: 8px;
   background: #333;
   color: #fff;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 
 .header {
@@ -125,11 +126,6 @@
   justify-content: space-between;
   padding: 0 5px;
   margin: 0px;
-}
-
-.logoGame {
-  width: 42px;
-  height: 42px;
 }
 
 .settingsIcon {
@@ -163,19 +159,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -10px; /* піджени під свій макет */
 }
 
 .scoreSquare {
   position: absolute;
-  width: 40px; /* менший у 2 рази ніж цифра */
-  height: 40px;
-  background: linear-gradient(135deg, #ffea00, #ffc107);
+  width: 35px; /* менший у 2 рази ніж цифра */
+  height: 35px;
+  background: linear-gradient(135deg, hwb(332 28% 10%));
   transform: rotate(-45deg);
   z-index: 1; /* задній план */
 }
 
 .scoreValueto {
+  margin-top: -10px;
   font-size: 60px;
   font-weight: 600;
   color: #ffffff;
@@ -183,14 +179,64 @@
   position: relative;
 }
 
-/* .scoreLabel {
-  font-size: 12px;
+.button {
+  /* Центруємо текст і іконку по горизонталі та вертикалі */
+  display: inline-flex; /* робимо flex, щоб вирівняти вміст */
+  align-items: center; /* вирівнюємо вертикально по центру */
+  justify-content: center; /* вирівнюємо горизонтально по центру */
+  gap: 8px; /* відстань між текстом і стрілкою */
+
+  margin-top: -70px;
+  width: 180px;
+  height: 50px;
+  border-radius: 28px;
+
+  font-family: Fredoka;
   font-weight: 600;
-  color: #222;
+  font-size: 15px;
+  line-height: 1; /* щоб не було додаткових відступів у тексту */
+  letter-spacing: 0;
+  background: linear-gradient(180deg, #ffc965 0%, #ffdb63 100%);
+  color: #c57cff;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  /* Анімація появи */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px) scale(0.98);
+  transition: opacity 300ms ease, transform 300ms ease;
+  visibility: hidden;
 }
 
-.scoreValue {
-  font-size: 18px;
-  font-weight: bold;
-  color: #111;
-} */
+/* Клас для показу кнопки */
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+}
+
+.arrow {
+  width: 28px; /* фіксований розмір іконки */
+  height: 28px;
+  color: #c57cff;
+}
+
+.highlight {
+  animation: glow 3s ease-in-out;
+}
+
+@keyframes glow {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 0px #fff);
+  }
+  50% {
+    filter: brightness(1.6) drop-shadow(0 0 12px gold);
+  }
+  100% {
+    filter: brightness(1) drop-shadow(0 0 0px #fff);
+  }
+}

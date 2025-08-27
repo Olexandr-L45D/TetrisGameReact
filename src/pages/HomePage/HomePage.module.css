@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   height: 100%;
   max-height: 780px;
   position: fixed;
@@ -13,7 +13,7 @@
   background: url("/src/assets/emages/BacgrBlue.png") center/cover no-repeat,
     url("/src/assets/emages/MaskStars.png") center/cover no-repeat;
 }
-@media (min-width: 319px) {
+@media (min-width: 339px) {
   .container {
     max-width: 370px;
     max-height: 850px;
@@ -38,15 +38,31 @@
   letter-spacing: 0;
   text-align: center;
   color: #fafafa;
+  /* background: url("/src/assets/emages/LogoSmailGame.png") center/cover no-repeat;
+  background: url("/src/assets/emages/LogoBlueTetris.png") center/cover no-repeat; */
 }
 
 .card {
-  margin-top: 20px;
+  margin-top: 0px;
   position: relative; /* дозволяє абсолютно позиціонувати сяйво всередині */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.logoGameBlok {
+  margin-top: -30px;
+  padding-top: 0px;
+}
+.logoGame {
+  margin-top: 0px;
+  margin: 0px;
+  margin-right: 8px;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  justify-content: start;
 }
 
 .title {

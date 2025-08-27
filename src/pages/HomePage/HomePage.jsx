@@ -4,6 +4,7 @@ import startSound from "/src/assets/audio/successMixkit.mp3.wav";
 import { useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import playIcon from "/src/assets/emages/btnStart.png";
+import logoIcon from "/src/assets/emages/LogoSmailGame.png";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -24,6 +25,9 @@ export default function HomePage() {
         <Loader />
       ) : (
         <div className={css.card}>
+          <div className={css.logoGameBlok}>
+            <img src={logoIcon} alt="" className={css.logoGame} />
+          </div>
           <h1 className={css.title}>Tetris</h1>
           <div className={css.titleGlo}></div>
           <button

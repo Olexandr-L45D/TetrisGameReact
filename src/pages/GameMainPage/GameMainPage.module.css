@@ -6,7 +6,7 @@
   padding: 0px;
   margin: 0px;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   height: 100%;
   max-height: 780px;
   display: flex;
@@ -19,8 +19,8 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url("/src/assets/emages/MaskStars.png") calc(50% - 20px)
-    center/cover no-repeat;
+  /* background: url("/src/assets/emages/MaskStars.png") calc(50% - 20px)
+    center/cover no-repeat; */
   mix-blend-mode: screen;
   opacity: 1;
   pointer-events: none;
@@ -35,7 +35,7 @@
   transform: translateY(100%);
 }
 
-@media (min-width: 319px) {
+@media (min-width: 339px) {
   .container {
     max-width: 370px;
     max-height: 850px;

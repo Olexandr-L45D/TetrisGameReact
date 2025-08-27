@@ -3,7 +3,7 @@
   padding: 0px;
   margin: 0px;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   height: 100%;
   max-height: 780px;
   display: flex;
@@ -13,7 +13,7 @@
   background-color: blue;
 }
 
-@media (min-width: 319px) {
+@media (min-width: 339px) {
   .containerGame {
     max-width: 370px;
     max-height: 850px;
@@ -21,7 +21,7 @@
 }
 
 .container {
-  width: 320px;
+  width: 340px;
   height: 780px;
   display: flex;
   flex-direction: column;
