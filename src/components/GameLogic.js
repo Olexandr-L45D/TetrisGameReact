@@ -70,7 +70,7 @@ const COLORS = [
   "#FFFF00", // жовтий
   "#800080", // фіолетовий
   "#ffa60090", // оранжевий
-  "#FF6347", // червоний (рідкісний бонусний)
+  "#ec1090ff", // червоний (рідкісний бонусний)
 ];
 
 const getRandomColor = () => {
@@ -123,7 +123,6 @@ export const generateShapes = (count = 5) => {
         { row: 0, col: 0 },
         { row: 0, col: 1 },
         { row: 0, col: 2 },
-        { row: 0, col: 3 },
       ]),
     },
     // 4x1 лінія
@@ -132,7 +131,6 @@ export const generateShapes = (count = 5) => {
         { row: 0, col: 0 },
         { row: 1, col: 0 },
         { row: 2, col: 0 },
-        { row: 3, col: 0 },
       ]),
     },
     // 2x3 прямокутник
@@ -141,7 +139,6 @@ export const generateShapes = (count = 5) => {
         { row: 0, col: 0 },
         { row: 0, col: 1 },
         { row: 0, col: 2 },
-        { row: 1, col: 0 },
       ]),
     },
     // Г-подібна коротка
@@ -149,7 +146,12 @@ export const generateShapes = (count = 5) => {
       cells: normalizeShape([
         { row: 0, col: 0 },
         { row: 1, col: 0 },
-        { row: 1, col: 1 },
+      ]),
+    },
+    {
+      cells: normalizeShape([
+        { row: 1, col: 0 },
+        { row: 0, col: 0 },
       ]),
     },
   ];
