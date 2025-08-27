@@ -1,60 +1,9 @@
-/* Контейнер з усіма фігурами */
-.shapesContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px; /* відстань між самими фігурами */
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-.shapePicker {
-  margin-bottom: 100px;
-  width: 100%;
-  max-width: 340px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  padding: 2px;
-}
-
-/* Контейнер для однієї фігури */
-.shape {
-  display: inline-block;
-}
-
-/* Кожен рядок у фігурі */
-.shapeRow {
-  display: flex;
-}
-
-/* Клітинка у фігурі */
-.shapeCell {
-  width: 30px;
-  height: 30px;
-  border-radius: 4px;
-  background: hsl(107, 95%, 15%);
-  margin-right: 3px;
-  margin-bottom: 3px;
-}
-
-/* Забираємо зайві відступи справа */
-.shapeRow .shapeCell:last-child {
-  margin-right: 0;
-}
-
-/* Забираємо зайві відступи знизу */
-.shapeRow:last-child .shapeCell {
-  margin-bottom: 0;
-}
-
-/* .boardContainer {
+.boardContainer {
   margin: 0;
   padding: 0;
   display: grid;
-  place-items: center; 
+  place-items: center;
 }
-
 
 .shapePicker {
   margin-bottom: 120px;
@@ -72,7 +21,7 @@
   flex-direction: column;
   gap: 3px;
 
-  touch-action: none; 
+  touch-action: none;
   cursor: grab;
   user-select: none;
 }
@@ -86,10 +35,9 @@
   width: 30px;
   height: 30px;
   border-radius: 4px;
-  background: hsl(107, 95%, 15%); 
+  background: hsl(107, 95%, 15%);
   background-clip: padding-box;
 }
-
 
 .dragPreview {
   position: fixed;
@@ -100,4 +48,14 @@
   z-index: 9999;
 
   opacity: 0.9;
-} */
+}
+
+/* Забираємо зайві відступи справа */
+.shapeRow .shapeCell:last-child {
+  margin-right: 0;
+}
+
+/* Забираємо зайві відступи знизу */
+.shapeRow:last-child .shapeCell {
+  margin-bottom: 0;
+}
