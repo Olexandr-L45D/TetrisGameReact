@@ -32,3 +32,20 @@
   transform: scale(1.2);
   filter: brightness(1.5);
 }
+
+.rowHighlight .cell,
+.colHighlight {
+  animation: flash 1s ease-in-out;
+}
+
+@keyframes flash {
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    background-color: inherit;
+  }
+}
