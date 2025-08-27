@@ -1,6 +1,5 @@
 // ShapePickerMobile.jsx
 import { useState } from "react";
-// import { getCellFromCoords } from "../utils/getCellFromCoords";
 import css from "./ShapePickerMobile.module.css";
 import { getCellFromCoords } from "../GameLogic";
 

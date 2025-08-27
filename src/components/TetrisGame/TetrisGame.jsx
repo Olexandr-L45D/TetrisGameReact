@@ -8,7 +8,7 @@ import logoIcon from "/src/assets/emages/LogoSmailGame.png";
 import restartSound from "/src/assets/audio/mixKids.mp3.wav";
 import playIcon from "/src/assets/emages/play.png";
 import { useNavigate } from "react-router-dom";
-import winSound from "/src/assets/audio/finalliVin.mp3.wav";
+import winSound from "/src/assets/audio/allclicks.mp3.wav";
 
 const GRID_SIZE = 8;
 

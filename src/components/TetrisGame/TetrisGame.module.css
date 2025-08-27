@@ -230,6 +230,9 @@
 
 .highlight {
   animation: glow 3s ease-in-out;
+  /* ніжне привітальне світіння */
+  box-shadow: 0 0 12px rgba(255, 223, 0, 0.8), 0 0 24px rgba(255, 223, 0, 0.6),
+    0 0 36px rgba(255, 223, 0, 0.4);
 }
 
 @keyframes glow {
