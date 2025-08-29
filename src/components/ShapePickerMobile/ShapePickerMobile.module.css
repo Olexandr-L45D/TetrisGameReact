@@ -1,10 +1,4 @@
-.boardContainer {
-  margin: 0;
-  padding: 0;
-  display: grid;
-  place-items: center;
-}
-
+/* 
 .shapePicker {
   margin-bottom: 120px;
   width: 100%;
@@ -50,12 +44,77 @@
   opacity: 0.9;
 }
 
-/* Забираємо зайві відступи справа */
 .shapeRow .shapeCell:last-child {
   margin-right: 0;
 }
 
-/* Забираємо зайві відступи знизу */
+.shapeRow:last-child .shapeCell {
+  margin-bottom: 0;
+} */
+
+/* Контейнер під shape picker */
+.shapePicker {
+  margin-bottom: 120px;
+  width: 100%;
+  max-width: 330px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px;
+}
+
+/* Одна фігура */
+.shape {
+  display: flex;
+  flex-direction: column;
+  gap: 1px; /* ❌ ніяких зазорів між рядами */
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+}
+
+/* Рядок у фігурі */
+.shapeRow {
+  display: flex;
+  gap: 1px; /* ❌ ніяких зазорів між клітинками */
+  padding: 0;
+  margin: 0;
+}
+
+/* Клітинка */
+.shapeCell {
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box; /* щоб padding/border не ламали розмір */
+  background: #4caf50; /* тимчасовий дефолтний колір */
+  border-radius: 4px;
+}
+
+/* Порожня клітинка, рендериться як "пробіл" */
+.emptyCell {
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* Превʼю під час drag */
+.dragPreview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+}
+.shapeRow .shapeCell:last-child {
+  margin-right: 0;
+}
+
 .shapeRow:last-child .shapeCell {
   margin-bottom: 0;
 }

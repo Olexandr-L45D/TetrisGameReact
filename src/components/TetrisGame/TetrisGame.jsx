@@ -17,7 +17,7 @@ const TetrisGame = () => {
   const [showButton, setShowButton] = useState(false);
   const [highlightLogo, setHighlightLogo] = useState(false);
 
-  // 🔥 новий стан для анімації рядків
+  //  новий стан для анімації рядків
   const [highlightRows, setHighlightRows] = useState([]);
   const [highlightCols, setHighlightCols] = useState([]);
 
@@ -49,15 +49,15 @@ const TetrisGame = () => {
     // перевірка заповнених рядків/стовпців
     const { fullRows, fullCols } = checkFullLines(newGrid);
     if (fullRows.length || fullCols.length) {
-      // 🔥 1. запускаємо звук
+      //  1. запускаємо звук
       const audio = new Audio(winSound);
       audio.play().catch(() => {});
 
-      // 🔥 2. підсвітка
+      //  2. підсвітка
       setHighlightRows(fullRows);
       setHighlightCols(fullCols);
 
-      // 🔥 3. затримка 1 сек перед очищенням
+      //  3. затримка 1 сек перед очищенням
       setTimeout(() => {
         const cleared = clearLines(newGrid, fullRows, fullCols);
         setGrid(cleared);
@@ -91,8 +91,6 @@ const TetrisGame = () => {
   const [totalScore, setTotalScore] = useState(0);
   const [shapes, setShapes] = useState(generateShapes(3));
 
-  // 🔥 новий стан для підсвітки логотипа
-
   // ініціалізація (витягнути рекорд з localStorage)
   useEffect(() => {
     const savedTotal = localStorage.getItem("totalScore");
@@ -104,56 +102,33 @@ const TetrisGame = () => {
     localStorage.setItem("totalScore", totalScore);
   }, [totalScore]);
 
-  // 🔥 ефект для підсвітки кожні 100 балів
+  //  ефект для підсвітки кожні 100 балів (з запасом +20%)
+
+  const highlightRanges = [
+    { min: 100, max: 120 },
+    { min: 200, max: 220 },
+    { min: 300, max: 320 },
+    { min: 400, max: 420 },
+    { min: 500, max: 520 },
+    { min: 600, max: 620 },
+    { min: 700, max: 720 },
+    { min: 800, max: 820 },
+    { min: 900, max: 920 },
+    { min: 1000, max: 1050 },
+  ];
+
   useEffect(() => {
-    if (totalScore > 0 && totalScore % 100 === 0) {
+    const inRange = highlightRanges.some(
+      range => totalScore >= range.min && totalScore <= range.max
+    );
+
+    if (inRange) {
       setHighlightLogo(true);
-      const timer = setTimeout(() => setHighlightLogo(false), 5000); // 3s
+
+      const timer = setTimeout(() => setHighlightLogo(false), 5000);
       return () => clearTimeout(timer);
     }
   }, [totalScore]);
-
-  // const handleDropShape = (shape, row, col) => {
-  //   const newGrid = grid.map(r => [...r]);
-  //   let canPlace = true;
-
-  //   // перевіряємо чи можна поставити
-  //   for (let r = 0; r < shape.length; r++) {
-  //     for (let c = 0; c < shape[r].length; c++) {
-  //       if (shape[r][c]) {
-  //         if (!newGrid[row + r] || newGrid[row + r][col + c] !== null) {
-  //           canPlace = false;
-  //         }
-  //       }
-  //     }
-  //   }
-
-  //   if (!canPlace) return;
-
-  //   // ставимо фігуру
-  //   for (let r = 0; r < shape.length; r++) {
-  //     for (let c = 0; c < shape[r].length; c++) {
-  //       if (shape[r][c]) {
-  //         newGrid[row + r][col + c] = shape[r][c]; // колір
-  //       }
-  //     }
-  //   }
-
-  //   // перевірка заповнених рядків/стовпців
-  //   const { fullRows, fullCols } = checkFullLines(newGrid);
-  //   if (fullRows.length || fullCols.length) {
-  //     const cleared = clearLines(newGrid, fullRows, fullCols);
-  //     setGrid(cleared);
-
-  //     const points = (fullRows.length + fullCols.length) * GRID_SIZE * 2; // 1 клітинка = 2 бали
-  //     setScore(prev => prev + points);
-  //     setTotalScore(prev => prev + points);
-  //   } else {
-  //     setGrid(newGrid);
-  //   }
-  //   // нові фігури
-  //   setShapes(generateShapes(3));
-  // };
 
   const handleGameFinall = () => {
     const audio = new Audio(restartSound);
