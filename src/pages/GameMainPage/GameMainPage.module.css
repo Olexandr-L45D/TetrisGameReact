@@ -1,15 +1,14 @@
 /* SettingPage  it is have three background layers */
 .container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0px;
-  margin: 0px;
   width: 100%;
   max-width: 340px;
   height: 100%;
   max-height: 780px;
-  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; /* щоб працювало justify/align */
   justify-content: center;
   align-items: center;
   background-color: blue;

@@ -29,8 +29,7 @@
   background-color: rgb(0, 162, 255);
   border: #fafafa;
   border: 2px;
-  border-radius: 30px; /* кругла форма */
-  /* transform: translateY(40px);  */
+  border-radius: 30px;
   font-weight: 600;
   font-style: SemiBold;
   font-size: 48px;

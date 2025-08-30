@@ -154,6 +154,15 @@ export const generateShapes = (count = 5) => {
         { row: 0, col: 0 },
       ]),
     },
+    // квадрат 2*2
+    {
+      cells: normalizeShape([
+        { row: 0, col: 0 },
+        { row: 0, col: 1 },
+        { row: 1, col: 0 },
+        { row: 1, col: 1 },
+      ]),
+    },
   ];
 
   const shapes = [];

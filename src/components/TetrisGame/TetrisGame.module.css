@@ -187,13 +187,11 @@
   align-items: center; /* вирівнюємо вертикально по центру */
   justify-content: center; /* вирівнюємо горизонтально по центру */
   gap: 8px; /* відстань між текстом і стрілкою */
-
   margin-top: -80px;
   margin-bottom: 50px;
   width: 180px;
   height: 50px;
   border-radius: 28px;
-
   font-family: Fredoka;
   font-weight: 600;
   font-size: 15px;
@@ -233,6 +231,7 @@
   /* ніжне привітальне світіння */
   box-shadow: 0 0 12px rgba(255, 223, 0, 0.8), 0 0 24px rgba(255, 223, 0, 0.6),
     0 0 36px rgba(255, 223, 0, 0.4);
+  z-index: 3;
 }
 
 @keyframes glow {
