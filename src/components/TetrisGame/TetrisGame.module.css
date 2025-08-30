@@ -48,16 +48,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 0px;
+  margin-bottom: -20px;
   padding-bottom: 0px;
 }
-.header {
-  width: 310px;
-  height: auto;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
+
 .title {
   font-size: 20px;
   font-weight: bold;
@@ -77,33 +71,6 @@
   font-size: 30px;
   font-weight: 700;
   color: hsl(69, 88%, 50%);
-}
-
-.boardContainer {
-  width: 300px;
-  height: 300px;
-  margin: 2px;
-  padding: 2px;
-}
-.boardWrapper {
-  width: 300px;
-  height: 300px;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(11, 11, 57);
-}
-.board {
-  display: grid;
-  grid-template-columns: repeat(8, 34px);
-  grid-template-rows: repeat(8, 34px);
-  gap: 3px;
-}
-.cell {
-  width: 34px;
-  height: 34px;
-  border-radius: 4px;
 }
 
 /* Footer */
@@ -187,8 +154,8 @@
   align-items: center; /* вирівнюємо вертикально по центру */
   justify-content: center; /* вирівнюємо горизонтально по центру */
   gap: 8px; /* відстань між текстом і стрілкою */
-  margin-top: -80px;
-  margin-bottom: 50px;
+  margin-top: -70px;
+  margin-bottom: 40px;
   width: 180px;
   height: 50px;
   border-radius: 28px;

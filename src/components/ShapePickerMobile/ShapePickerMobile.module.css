@@ -2,7 +2,7 @@
 .shapePicker {
   margin-bottom: 120px;
   width: 100%;
-  max-width: 330px;
+  max-width: 340px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -14,7 +14,7 @@
 .shape {
   display: flex;
   flex-direction: column;
-  gap: 1px; /*1px зазор між рядами щоб було видно самі клітини */
+  gap: 2px;
   touch-action: none;
   cursor: grab;
   user-select: none;
@@ -23,24 +23,26 @@
 /* Рядок у фігурі */
 .shapeRow {
   display: flex;
-  gap: 1px; /*1px зазор між стовбцями щоб було видно самі клітини */
+  gap: 2px;
   padding: 0;
   margin: 0;
 }
 
 /* Клітинка */
 .shapeCell {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   box-sizing: border-box; /* щоб padding/border не ламали розмір */
   background: #4caf50; /* тимчасовий дефолтний колір */
   border-radius: 4px;
+  gap: 2px;
 }
 
 /* Порожня клітинка, рендериться як "пробіл" */
 .emptyCell {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
+  gap: 2px;
   box-sizing: border-box;
   background: transparent;
 }

@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+import { getCellFromCoords } from "../GameLogic";
 import css from "./GameBoard.module.css";
 
 const GRID_SIZE = 8;
+const CELL_SIZE = 34;
+const GAP = 3;
+
 const COLORS = [
-  "rgba(43, 82, 4, 1)", // зелений
+  "hsla(90, 84%, 34%, 1.00)", // зелений
   "rgba(10, 10, 148, 0.88)", // синій
   "#00BFFF", // голубий
   "#FFFF00", // жовтий
@@ -45,7 +49,7 @@ const GameBoard = ({ grid, highlightRows = [], highlightCols = [] }) => {
         setAnimatedGrid(makeEmptyGrid());
         setFlashCells([]);
       }, 1000);
-    }, 4000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -81,10 +85,73 @@ const GameBoard = ({ grid, highlightRows = [], highlightCols = [] }) => {
   const finalGrid = animatedGrid.every(row => row.every(cell => cell === null))
     ? grid
     : animatedGrid;
+  // 👇 нова логіка для кліку
+  const handleBoardClick = event => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP);
+    console.log("Click at row:", row, "col:", col);
+
+    // 👉 тут можеш викликати placeShapeAt(row, col)
+  };
+
+  // 👇 нова логіка для drag&drop
+  const handleDrop = event => {
+    event.preventDefault();
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP);
+    console.log("Dropped at row:", row, "col:", col);
+
+    // 👉 тут також можна викликати placeShapeAt(row, col)
+  };
+
+  const handleDragOver = event => {
+    event.preventDefault(); // треба щоб drop спрацював
+  };
+
+  // // 👇 нова логіка для кліку
+  // const handleBoardClick = (event: React.MouseEvent) => {
+  //   const rect = event.currentTarget.getBoundingClientRect();
+  //   const x = event.clientX - rect.left;
+  //   const y = event.clientY - rect.top;
+
+  //   const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP);
+  //   console.log("Click at row:", row, "col:", col);
+
+  //   // 👉 тут можеш викликати placeShapeAt(row, col)
+  // };
+
+  // // 👇 нова логіка для drag&drop
+  // const handleDrop = (event: React.DragEvent) => {
+  //   event.preventDefault();
+  //   const rect = event.currentTarget.getBoundingClientRect();
+  //   const x = event.clientX - rect.left;
+  //   const y = event.clientY - rect.top;
+
+  //   const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP);
+  //   console.log("Dropped at row:", row, "col:", col);
+
+  //   // 👉 тут також можна викликати placeShapeAt(row, col)
+  // };
+
+  // const handleDragOver = (event: React.DragEvent) => {
+  //   event.preventDefault(); // треба щоб drop спрацював
+  // };
 
   return (
     <section className={css.boardContainer}>
-      <div id="game-board" className={css.board}>
+      <div
+        id="game-board"
+        className={css.board}
+        onClick={handleBoardClick} // 👈 кліки
+        onDrop={handleDrop} // 👈 drop
+        onDragOver={handleDragOver}
+      >
         {finalGrid.map((row, rIndex) =>
           row.map((cell, cIndex) => {
             const id = `${rIndex}-${cIndex}`;
@@ -106,14 +173,16 @@ const GameBoard = ({ grid, highlightRows = [], highlightCols = [] }) => {
 
 export default GameBoard;
 
-// працювало без підсвітки заповнених 8 клітин
-
 // import { useEffect, useState } from "react";
+// import { getCellFromCoords } from "../GameLogic";
 // import css from "./GameBoard.module.css";
 
 // const GRID_SIZE = 8;
+// const CELL_SIZE = 34;
+// const GAP = 3;
+
 // const COLORS = [
-//   "rgba(43, 82, 4, 1)", // зелений
+//   "hsla(90, 84%, 34%, 1.00)", // зелений
 //   "rgba(10, 10, 148, 0.88)", // синій
 //   "#00BFFF", // голубий
 //   "#FFFF00", // жовтий
@@ -135,12 +204,12 @@ export default GameBoard;
 //     Array.from({ length: GRID_SIZE }, () => null)
 //   );
 
-// const GameBoard = ({ grid }) => {
+// const GameBoard = ({ grid, highlightRows = [], highlightCols = [] }) => {
 //   const [animatedGrid, setAnimatedGrid] = useState(makeFilledGrid());
 //   const [flashCells, setFlashCells] = useState([]);
 
 //   useEffect(() => {
-//     // через 4с підсвітити всі клітинки
+//     // 🔥 стартова анімація — підсвічує всі клітинки
 //     const timer = setTimeout(() => {
 //       const allCells = [];
 //       animatedGrid.forEach((row, r) => {
@@ -155,19 +224,62 @@ export default GameBoard;
 //         setAnimatedGrid(makeEmptyGrid());
 //         setFlashCells([]);
 //       }, 1000);
-//     }, 4000);
+//     }, 3000);
 
 //     return () => clearTimeout(timer);
 //   }, []);
 
-//   // після ефекту "яскравого старту" показуємо справжню grid
+//   // 🔥 ефект для підсвітки рядків/стовпців при заповненні
+//   useEffect(() => {
+//     if (highlightRows.length || highlightCols.length) {
+//       const cellsToFlash = [];
+
+//       // підсвічуємо повні рядки
+//       highlightRows.forEach(r => {
+//         for (let c = 0; c < GRID_SIZE; c++) {
+//           cellsToFlash.push(`${r}-${c}`);
+//         }
+//       });
+
+//       // підсвічуємо повні колонки
+//       highlightCols.forEach(c => {
+//         for (let r = 0; r < GRID_SIZE; r++) {
+//           cellsToFlash.push(`${r}-${c}`);
+//         }
+//       });
+
+//       setFlashCells(cellsToFlash);
+
+//       // прибираємо підсвітку через 1с
+//       const timer = setTimeout(() => setFlashCells([]), 1000);
+//       return () => clearTimeout(timer);
+//     }
+//   }, [highlightRows, highlightCols]);
+
+//   // після стартової анімації показуємо справжню grid
 //   const finalGrid = animatedGrid.every(row => row.every(cell => cell === null))
 //     ? grid
 //     : animatedGrid;
 
+//   // 👇 нова функція: визначає клітинку по кліку
+//   const handleBoardClick = event => {
+//     const rect = event.currentTarget.getBoundingClientRect();
+//     const x = event.clientX - rect.left;
+//     const y = event.clientY - rect.top;
+
+//     const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP);
+//     console.log("click/drop at row:", row, "col:", col);
+
+//     // TODO: далі можна інтегрувати логіку вставки фігури
+//   };
+
 //   return (
 //     <section className={css.boardContainer}>
-//       <div id="game-board" className={css.board}>
+//       <div
+//         id="game-board"
+//         className={css.board}
+//         onClick={handleBoardClick} // 👈 підʼєднали
+//       >
 //         {finalGrid.map((row, rIndex) =>
 //           row.map((cell, cIndex) => {
 //             const id = `${rIndex}-${cIndex}`;
@@ -189,58 +301,106 @@ export default GameBoard;
 
 // export default GameBoard;
 
-// // GameBoard.jsx
+// import { useEffect, useState } from "react";
 // import css from "./GameBoard.module.css";
 
-// const GameBoard = ({ grid }) => {
-//   return (
-//     <section className={css.boardContainer}>
-//       {/* саме цей елемент матиме фіксований id */}
-//       <div id="game-board" className={css.board}>
-//         {grid.map((row, rIndex) =>
-//           row.map((cell, cIndex) => (
-//             <div
-//               key={`${rIndex}-${cIndex}`}
-//               className={css.cell}
-//               style={{ backgroundColor: cell || "transparent" }}
-//             />
-//           ))
-//         )}
-//       </div>
-//     </section>
+// const GRID_SIZE = 8;
+// const COLORS = [
+//   "hsla(90, 84%, 34%, 1.00)", // зелений
+//   "rgba(10, 10, 148, 0.88)", // синій
+//   "#00BFFF", // голубий
+//   "#FFFF00", // жовтий
+//   "#800080", // фіолетовий
+//   "#FFA500", // оранжевий
+//   "#FF6347", // червоний (рідкісний бонус)
+// ];
+
+// const getRandomColor = () =>
+//   Math.random() < 0.05 ? COLORS[6] : COLORS[Math.floor(Math.random() * 6)];
+
+// const makeFilledGrid = () =>
+//   Array.from({ length: GRID_SIZE }, () =>
+//     Array.from({ length: GRID_SIZE }, () => getRandomColor())
 //   );
-// };
 
-// export default GameBoard;
+// const makeEmptyGrid = () =>
+//   Array.from({ length: GRID_SIZE }, () =>
+//     Array.from({ length: GRID_SIZE }, () => null)
+//   );
 
-// // import React from "react";
-// import css from "./GameBoard.module.css";
+// const GameBoard = ({ grid, highlightRows = [], highlightCols = [] }) => {
+//   const [animatedGrid, setAnimatedGrid] = useState(makeFilledGrid());
+//   const [flashCells, setFlashCells] = useState([]);
 
-// const GameBoard = ({ grid, onDropShape }) => {
-//   const handleDrop = (e, row, col) => {
-//     e.preventDefault();
-//     const shapeData = e.dataTransfer.getData("shape");
-//     if (shapeData) {
-//       const shape = JSON.parse(shapeData);
-//       onDropShape(shape, row, col);
+//   useEffect(() => {
+//     // 🔥 стартова анімація — підсвічує всі клітинки
+//     const timer = setTimeout(() => {
+//       const allCells = [];
+//       animatedGrid.forEach((row, r) => {
+//         row.forEach((cell, c) => {
+//           if (cell) allCells.push(`${r}-${c}`);
+//         });
+//       });
+//       setFlashCells(allCells);
+
+//       // через 1с очистити дошку
+//       setTimeout(() => {
+//         setAnimatedGrid(makeEmptyGrid());
+//         setFlashCells([]);
+//       }, 1000);
+//     }, 3000);
+
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   // 🔥 ефект для підсвітки рядків/стовпців при заповненні
+//   useEffect(() => {
+//     if (highlightRows.length || highlightCols.length) {
+//       const cellsToFlash = [];
+
+//       // підсвічуємо повні рядки
+//       highlightRows.forEach(r => {
+//         for (let c = 0; c < GRID_SIZE; c++) {
+//           cellsToFlash.push(`${r}-${c}`);
+//         }
+//       });
+
+//       // підсвічуємо повні колонки
+//       highlightCols.forEach(c => {
+//         for (let r = 0; r < GRID_SIZE; r++) {
+//           cellsToFlash.push(`${r}-${c}`);
+//         }
+//       });
+
+//       setFlashCells(cellsToFlash);
+
+//       // прибираємо підсвітку через 1с
+//       const timer = setTimeout(() => setFlashCells([]), 1000);
+//       return () => clearTimeout(timer);
 //     }
-//   };
+//   }, [highlightRows, highlightCols]);
 
-//   const allowDrop = e => e.preventDefault();
+//   // після стартової анімації показуємо справжню grid
+//   const finalGrid = animatedGrid.every(row => row.every(cell => cell === null))
+//     ? grid
+//     : animatedGrid;
 
 //   return (
 //     <section className={css.boardContainer}>
-//       <div className={css.board}>
-//         {grid.map((row, rIndex) =>
-//           row.map((cell, cIndex) => (
-//             <div
-//               key={`${rIndex}-${cIndex}`}
-//               className={css.cell}
-//               style={{ backgroundColor: cell || "transparent" }}
-//               onDrop={e => handleDrop(e, rIndex, cIndex)}
-//               onDragOver={allowDrop}
-//             />
-//           ))
+//       <div id="game-board" className={css.board}>
+//         {finalGrid.map((row, rIndex) =>
+//           row.map((cell, cIndex) => {
+//             const id = `${rIndex}-${cIndex}`;
+//             return (
+//               <div
+//                 key={id}
+//                 className={`${css.cell} ${
+//                   flashCells.includes(id) ? css.flash : ""
+//                 }`}
+//                 style={{ backgroundColor: cell || "transparent" }}
+//               />
+//             );
+//           })
 //         )}
 //       </div>
 //     </section>
