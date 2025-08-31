@@ -4,7 +4,7 @@ import css from "./GameBoard.module.css";
 
 const GRID_SIZE = 8;
 const CELL_SIZE = 34;
-const GAP = 3;
+const GAP = 2;
 
 const COLORS = [
   "hsla(90, 84%, 34%, 1.00)", // зелений
@@ -59,14 +59,12 @@ const GameBoard = ({ grid, highlightRows = [], highlightCols = [] }) => {
     if (highlightRows.length || highlightCols.length) {
       const cellsToFlash = [];
 
-      // підсвічуємо повні рядки
       highlightRows.forEach(r => {
         for (let c = 0; c < GRID_SIZE; c++) {
           cellsToFlash.push(`${r}-${c}`);
         }
       });
 
-      // підсвічуємо повні колонки
       highlightCols.forEach(c => {
         for (let r = 0; r < GRID_SIZE; r++) {
           cellsToFlash.push(`${r}-${c}`);
@@ -75,7 +73,6 @@ const GameBoard = ({ grid, highlightRows = [], highlightCols = [] }) => {
 
       setFlashCells(cellsToFlash);
 
-      // прибираємо підсвітку через 1с
       const timer = setTimeout(() => setFlashCells([]), 1000);
       return () => clearTimeout(timer);
     }
@@ -85,71 +82,57 @@ const GameBoard = ({ grid, highlightRows = [], highlightCols = [] }) => {
   const finalGrid = animatedGrid.every(row => row.every(cell => cell === null))
     ? grid
     : animatedGrid;
-  // 👇 нова логіка для кліку
+
+  // ---- КЛІК ----
   const handleBoardClick = event => {
-    const rect = event.currentTarget.getBoundingClientRect();
+    const board = document.getElementById("game-board");
+    if (!board) return;
+
+    const rect = board.getBoundingClientRect();
+
+    // координати кліку відносно контейнера
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP);
-    console.log("Click at row:", row, "col:", col);
+    const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP, {
+      left: 0,
+      top: 0,
+    });
 
-    // 👉 тут можеш викликати placeShapeAt(row, col)
+    console.log("Click at row:", row, "col:", col);
+    // 👉 тут можна викликати placeShapeAt(row, col)
   };
 
-  // 👇 нова логіка для drag&drop
+  // ---- DROP ----
   const handleDrop = event => {
     event.preventDefault();
-    const rect = event.currentTarget.getBoundingClientRect();
+    const board = document.getElementById("game-board");
+    if (!board) return;
+
+    const rect = board.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP);
-    console.log("Dropped at row:", row, "col:", col);
+    const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP, {
+      left: 0,
+      top: 0,
+    });
 
+    console.log("Dropped at row:", row, "col:", col);
     // 👉 тут також можна викликати placeShapeAt(row, col)
   };
 
   const handleDragOver = event => {
-    event.preventDefault(); // треба щоб drop спрацював
+    event.preventDefault();
   };
-
-  // // 👇 нова логіка для кліку
-  // const handleBoardClick = (event: React.MouseEvent) => {
-  //   const rect = event.currentTarget.getBoundingClientRect();
-  //   const x = event.clientX - rect.left;
-  //   const y = event.clientY - rect.top;
-
-  //   const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP);
-  //   console.log("Click at row:", row, "col:", col);
-
-  //   // 👉 тут можеш викликати placeShapeAt(row, col)
-  // };
-
-  // // 👇 нова логіка для drag&drop
-  // const handleDrop = (event: React.DragEvent) => {
-  //   event.preventDefault();
-  //   const rect = event.currentTarget.getBoundingClientRect();
-  //   const x = event.clientX - rect.left;
-  //   const y = event.clientY - rect.top;
-
-  //   const { row, col } = getCellFromCoords(x, y, CELL_SIZE, GAP);
-  //   console.log("Dropped at row:", row, "col:", col);
-
-  //   // 👉 тут також можна викликати placeShapeAt(row, col)
-  // };
-
-  // const handleDragOver = (event: React.DragEvent) => {
-  //   event.preventDefault(); // треба щоб drop спрацював
-  // };
 
   return (
     <section className={css.boardContainer}>
       <div
         id="game-board"
         className={css.board}
-        onClick={handleBoardClick} // 👈 кліки
-        onDrop={handleDrop} // 👈 drop
+        onClick={handleBoardClick}
+        onDrop={handleDrop}
         onDragOver={handleDragOver}
       >
         {finalGrid.map((row, rIndex) =>

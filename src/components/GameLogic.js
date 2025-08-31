@@ -147,12 +147,50 @@ export const clearLines = (board, fullRows, fullCols) => {
   return newBoard;
 };
 
-// утіліта для пересуву клітин/ utils/getCellFromCoords.js
-export function getCellFromCoords(x, y, cellSize = 34, gap = 2) {
+// утіліта для пересуву клітин // import { getCellFromCoords } from "../GameLogic";
+// export function getCellFromCoords(x, y, cellSize = 34, gap = 2) {
+//   const effectiveCellSize = cellSize + gap;
+
+//   const col = Math.floor(x / effectiveCellSize);
+//   const row = Math.floor(y / effectiveCellSize);
+
+//   return { row, col };
+// }
+
+// utils/getCellFromCoords.js
+// export function getCellFromCoords(
+//   x,
+//   y,
+//   cellSize = 34,
+//   gap = 2,
+//   offsetX = 0, // додаткове зміщення по X (позитивне вимикає вправо)
+//   offsetY = 0 // додаткове зміщення по Y (позитивне вимикає вниз)
+// ) {
+//   // effective — ширина "сектора" однієї клітинки разом із gap
+//   const effectiveCellSize = cellSize + gap;
+
+//   // застосовуємо зміщення перед діленням
+//   const col = Math.floor((x - offsetX) / effectiveCellSize);
+//   const row = Math.floor((y - offsetY) / effectiveCellSize);
+
+//   return { row, col };
+// }
+// утиліта для пересуву клітин
+export function getCellFromCoords(
+  x,
+  y,
+  cellSize = 34,
+  gap = 2,
+  gridOffset = { left: 0, top: 0 }
+) {
   const effectiveCellSize = cellSize + gap;
 
-  const col = Math.floor(x / effectiveCellSize);
-  const row = Math.floor(y / effectiveCellSize);
+  // Враховуємо зсув контейнера (бо поле не обов'язково починається з (0,0))
+  const relativeX = x - gridOffset.left;
+  const relativeY = y - gridOffset.top;
+
+  const col = Math.floor(relativeX / effectiveCellSize);
+  const row = Math.floor(relativeY / effectiveCellSize);
 
   return { row, col };
 }

@@ -64,8 +64,18 @@ const ShapePickerMobile = ({
       const padLeft = parseFloat(style.paddingLeft) || 0;
       const padTop = parseFloat(style.paddingTop) || 0;
 
-      const col = Math.floor((dropX - rect.left - padLeft) / (cellSize + gap));
-      const row = Math.floor((dropY - rect.top - padTop) / (cellSize + gap));
+      // 👇 ширина/висота фігури у клітинках
+      const shapeRows = dragging.shape.length;
+      const shapeCols = dragging.shape[0].length;
+
+      // 👇 зміщуємо від центру до верхнього-лівого кута фігури
+      const adjustedX =
+        dropX - rect.left - padLeft - (shapeCols * (cellSize + gap)) / 2;
+      const adjustedY =
+        dropY - rect.top - padTop - (shapeRows * (cellSize + gap)) / 2;
+
+      const col = Math.floor(adjustedX / (cellSize + gap));
+      const row = Math.floor(adjustedY / (cellSize + gap));
 
       if (row >= 0 && col >= 0 && row < gridSize && col < gridSize) {
         onDropShape(dragging.shape, row, col);
@@ -74,6 +84,30 @@ const ShapePickerMobile = ({
 
     setDragging(null);
   };
+
+  // const handleTouchEnd = () => {
+  //   if (!dragging) return;
+
+  //   const dropX = dragging.x;
+  //   const dropY = dragging.y;
+
+  //   const boardEl = document.getElementById("game-board");
+  //   if (boardEl) {
+  //     const rect = boardEl.getBoundingClientRect();
+  //     const style = window.getComputedStyle(boardEl);
+  //     const padLeft = parseFloat(style.paddingLeft) || 0;
+  //     const padTop = parseFloat(style.paddingTop) || 0;
+
+  //     const col = Math.floor((dropX - rect.left - padLeft) / (cellSize + gap));
+  //     const row = Math.floor((dropY - rect.top - padTop) / (cellSize + gap));
+
+  //     if (row >= 0 && col >= 0 && row < gridSize && col < gridSize) {
+  //       onDropShape(dragging.shape, row, col);
+  //     }
+  //   }
+
+  //   setDragging(null);
+  // };
 
   return (
     <footer className={css.shapePicker}>
