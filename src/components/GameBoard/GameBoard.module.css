@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.board {
+/* .board {
   display: grid;
   grid-template-columns: repeat(8, 34px);
   grid-template-rows: repeat(8, 34px);
@@ -13,14 +13,38 @@
   background-color: rgb(11, 11, 57);
   border-radius: 4px;
   box-sizing: border-box;
+} */
+/* .board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 2px;
+  width: calc(8 * 34px + 7 * 2px); 
+  height: calc(8 * 34px + 7 * 2px); 
+  background-color: rgb(11, 11, 57);
+} */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 34px);
+  grid-template-rows: repeat(8, 34px);
+  gap: 2px;
+  background-color: rgb(11, 11, 57);
+  width: max-content; /* рівно під сітку */
+  height: max-content;
+  margin: 0 auto; /* по центру */
 }
 
 .cell {
-  width: 34px;
+  aspect-ratio: 1 / 1; /* щоб залишались квадратні */
+}
+
+.cell {
+  /* width: 34px;
   height: 34px;
-  gap: 2px;
-  border: 1px solid rgba(200, 200, 200, 0.3); /* світло-сіра лінія */
-  border-radius: 2px; /* можна зменшити, щоб сітка була чіткою */
+  gap: 2px; */
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  border-radius: 2px;
   background-color: transparent;
   transition: background-color 0.2s;
   box-sizing: border-box;
