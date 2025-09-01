@@ -34,15 +34,6 @@
   background-color: blue;
 }
 
-.logoGame {
-  margin-top: 0px;
-  margin: 0px;
-  margin-right: 8px;
-  left: 0;
-  width: 80px;
-  height: 80px;
-  justify-content: start;
-}
 .headerContainer {
   margin-top: 60px;
   display: flex;
@@ -192,23 +183,47 @@
   height: 28px;
   color: #c57cff;
 }
+.logoGame {
+  position: relative;
+  margin: 0;
+  margin-right: 8px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: transparent; /* прозорий фон */
+}
+.logo {
+  margin: 0;
+  width: 70px;
+  height: 70px;
+  background: transparent; /* прозорий фон */
+}
 
-.highlight {
-  animation: glow 3s ease-in-out;
-  /* ніжне привітальне світіння */
+.logoGame.highlight::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* займає весь контейнер */
+  border-radius: 50%; /* зробить світіння круглим */
   box-shadow: 0 0 12px rgba(255, 223, 0, 0.8), 0 0 24px rgba(255, 223, 0, 0.6),
-    0 0 36px rgba(255, 223, 0, 0.4);
-  z-index: 3;
+    0 0 36px rgba(248, 5, 224, 0.4);
+  z-index: 100; /* світіння під картинкою */
+  animation: glow 3s ease-in-out infinite;
 }
 
 @keyframes glow {
   0% {
-    filter: brightness(1) drop-shadow(0 0 0px #fff);
+    opacity: 0.4;
+    transform: scale(1);
   }
   50% {
-    filter: brightness(1.6) drop-shadow(0 0 12px gold);
+    opacity: 1;
+    transform: scale(1.2);
   }
   100% {
-    filter: brightness(1) drop-shadow(0 0 0px #fff);
+    opacity: 0.4;
+    transform: scale(1);
   }
 }

@@ -4,7 +4,7 @@ import { FiSettings } from "react-icons/fi";
 import { generateShapes, checkFullLines, clearLines } from "../GameLogic";
 import GameBoard from "../GameBoard/GameBoard";
 import ShapePickerMobile from "../ShapePickerMobile/ShapePickerMobile";
-import logoIcon from "/src/assets/emages/LogoSmailGame.png";
+import logoIcon from "/src/assets/emages/logotransparent.png";
 import restartSound from "/src/assets/audio/mixKids.mp3.wav";
 import playIcon from "/src/assets/emages/play.png";
 import { useNavigate } from "react-router-dom";
@@ -102,19 +102,24 @@ const TetrisGame = () => {
     localStorage.setItem("totalScore", totalScore);
   }, [totalScore]);
 
-  //  ефект для підсвітки кожні 100 балів (з запасом +20%)
+  //  ефект для підсвітки кожні 100 балів (з запасом +20-30%)
 
   const highlightRanges = [
     { min: 100, max: 120 },
     { min: 200, max: 220 },
     { min: 300, max: 320 },
     { min: 400, max: 420 },
-    { min: 500, max: 520 },
-    { min: 600, max: 620 },
-    { min: 700, max: 720 },
-    { min: 800, max: 820 },
-    { min: 900, max: 920 },
+    { min: 500, max: 530 },
+    { min: 600, max: 630 },
+    { min: 700, max: 730 },
+    { min: 800, max: 830 },
+    { min: 900, max: 930 },
     { min: 1000, max: 1050 },
+    { min: 1100, max: 1150 },
+    { min: 1200, max: 1250 },
+    { min: 1300, max: 1350 },
+    { min: 1400, max: 1450 },
+    { min: 1500, max: 1550 },
   ];
 
   useEffect(() => {
@@ -149,7 +154,7 @@ const TetrisGame = () => {
                 highlightLogo ? css.highlight : ""
               }`}
             >
-              <img src={logoIcon} alt="Game Logo" className={css.logoGame} />
+              <img src={logoIcon} alt="Game Logo" className={css.logo} />
             </div>
 
             <div className={css.scoreBox}>

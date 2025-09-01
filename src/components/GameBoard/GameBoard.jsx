@@ -100,7 +100,6 @@ const GameBoard = ({ grid, highlightRows = [], highlightCols = [] }) => {
     });
 
     console.log("Click at row:", row, "col:", col);
-    // 👉 тут можна викликати placeShapeAt(row, col)
   };
 
   // ---- DROP ----
@@ -119,7 +118,6 @@ const GameBoard = ({ grid, highlightRows = [], highlightCols = [] }) => {
     });
 
     console.log("Dropped at row:", row, "col:", col);
-    // 👉 тут також можна викликати placeShapeAt(row, col)
   };
 
   const handleDragOver = event => {

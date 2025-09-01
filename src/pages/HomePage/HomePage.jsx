@@ -16,7 +16,7 @@ export default function HomePage() {
     setLoading(true);
     setTimeout(() => {
       navigate("/gamemain");
-    }, 1500); // плавний перехід після 1.5 с
+    }, 1000); // плавний перехід після 1 с
   };
 
   return (

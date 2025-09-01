@@ -37,8 +37,6 @@
   letter-spacing: 0;
   text-align: center;
   color: #fafafa;
-  /* background: url("/src/assets/emages/LogoSmailGame.png") center/cover no-repeat;
-  background: url("/src/assets/emages/LogoBlueTetris.png") center/cover no-repeat; */
 }
 
 .card {
@@ -66,7 +64,7 @@
 
 .title {
   margin-top: 0px;
-  display: inline-block; /* щоб ширина була по тексту */
+  display: inline-block;
   padding-top: 70px;
   padding-bottom: 70px;
   padding-left: 90px;
@@ -86,10 +84,10 @@
 
 .titleGlow {
   position: absolute;
-  top: -105px; /* регулюй, щоб сяйво збігалося з заголовком */
+  top: -105px;
   left: 51%;
   transform: translateX(-50%);
-  width: 175px; /* підлаштуй під розмір заголовка */
+  width: 175px;
   height: 175px;
   background: url("/src/assets/emages/MaskHomeCentre.png") center/contain
     no-repeat;
@@ -99,7 +97,7 @@
 
 .cartTitle {
   position: relative;
-  z-index: 1; /* текст над сяйвом */
+  z-index: 1;
 }
 
 .cartTitle {
@@ -131,7 +129,7 @@
 }
 
 .buttonStart {
-  width: 80px; /* фіксований розмір іконки */
+  width: 80px;
   height: 80px;
   display: flex;
   align-items: center;
@@ -146,10 +144,8 @@
 }
 
 .arrow {
-  width: 150px; /* фіксований розмір іконки */
+  width: 150px;
   height: 150px;
-  /* background: url("/src/assets/emages/TetrisLogoGame.png") center center
-    no-repeat; */
 }
 .blockBottom {
   width: 150px;
